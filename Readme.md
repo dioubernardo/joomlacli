@@ -33,3 +33,12 @@
   "show_advanced": 0
 }'
 ```
+
+### setconfiguration
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html setconfiguration '{
+  "sef_rewrite": 1,
+  "sef_suffix": 0
+}'
+```
