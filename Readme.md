@@ -13,3 +13,9 @@
 ```bash
 /usr/src/joomlacli/joomlacli /var/www/html uninstall pip
 ```
+
+### disableplugin
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html disableplugin plg_editors_codemirror
+```
