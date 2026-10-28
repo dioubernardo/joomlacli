@@ -48,3 +48,9 @@
 ```bash
 /usr/src/joomlacli/joomlacli /var/www/html setfiltertext 7 NONE
 ```
+
+### setpermission
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html core.edit 6 1
+```
