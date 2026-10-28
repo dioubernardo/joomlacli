@@ -46,7 +46,7 @@ foreach ($extensions as $extension) {
     }
 
     // Atualiza/combina mantendo as chaves antigas e substituindo apenas as enviadas
-    $mergedParams = array_replace_recursive($currentParams, $newParams);
+    $mergedParams = mergeParamsSmart($currentParams, $newParams);
     $finalParamsJson = json_encode($mergedParams, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     // Carrega o registro da tabela para alteracao
@@ -79,3 +79,28 @@ try {
 }
 
 exit(0);
+
+function mergeParamsSmart(array $current, array $new): array
+{
+    foreach ($new as $key => $value) {
+        // Se o valor enviado for null, remove a chave do array de destino
+        if ($value === null) {
+            unset($current[$key]);
+            continue;
+        }
+
+        if (is_array($value) && isset($current[$key]) && is_array($current[$key])) {
+            // Se for um array indexado numericamente (ex: lista de botoes ["bold", "italic"])
+            if (array_keys($value) === range(0, count($value) - 1)) {
+                $current[$key] = $value; // Substitui completamente
+            } else {
+                // Se for um array associativo (ex: {"toolbar1": [...], "menu": [...]})
+                $current[$key] = mergeParamsSmart($current[$key], $value);
+            }
+        } else {
+            $current[$key] = $value;
+        }
+    }
+
+    return $current;
+}
