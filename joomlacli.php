@@ -28,10 +28,11 @@ if (!file_exists($actionFile)) {
 
 const _JEXEC = 1;
 
-if (file_exists($realJoomlaPath . '/defines.php'))
+if (file_exists($realJoomlaPath . '/defines.php')) {
     require_once $realJoomlaPath . '/defines.php';
+}
 
-if (!defined('_JDEFINES')){
+if (!defined('_JDEFINES')) {
     define('JPATH_BASE', $realJoomlaPath);
     require_once JPATH_BASE . '/includes/defines.php';
 }
@@ -41,11 +42,23 @@ require_once JPATH_LIBRARIES . '/cms.php';
 require_once JPATH_CONFIGURATION . '/configuration.php';
 require_once JPATH_BASE . '/includes/framework.php';
 
-class joomlaCli extends JApplicationCli{
+class joomlaCli extends JApplicationCli {
+
+    // Fila para guardar as mensagens do enqueueMessage
+    protected $messageQueue = [];
 
     public function flushAssets() {}
 
-    public function enqueueMessage($msg, $type = 'message') {}
+    public function enqueueMessage($msg, $type = 'message') {
+        $this->messageQueue[] = [
+            'message' => $msg,
+            'type'    => $type
+        ];
+    }
+
+    public function getMessageQueue() {
+        return $this->messageQueue;
+    }
 
     public function getTemplate($params = false) {
         return 'isis';
@@ -60,7 +73,7 @@ class joomlaCli extends JApplicationCli{
     }
 
     public function isClient($name) {
-        return $name === 'administrator' || $name === 1;
+        return $name === 'administrator' || $name === 1 || $name === 'admin';
     }
 
     public function getUserState($key, $default = null) {
@@ -79,7 +92,19 @@ class joomlaCli extends JApplicationCli{
         return null;
     }
 
-    public function doExecute(){
+    public function getMenu() {
+        return null;
+    }
+
+    public function getRouter() {
+        return null;
+    }
+
+    public function getParams() {
+        return new JRegistry();
+    }
+
+    public function doExecute() {
         global $actionFile, $args;
         \JFactory::$application = $this;
 
@@ -89,10 +114,10 @@ class joomlaCli extends JApplicationCli{
             $session->start();
         }
 
-        // Eleva para usuario Super Admin
+        // Eleva para usuario Super Admin ID 1
         $session->set('user', \JUser::getInstance(1));
 
-        // Carrega traducoes de instalador
+        // Carrega traducoes do sistema/admin
         $lang = \JFactory::getLanguage();
         $lang->load('lib_joomla', JPATH_ADMINISTRATOR);
         $lang->load('com_installer', JPATH_ADMINISTRATOR);
