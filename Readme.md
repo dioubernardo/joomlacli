@@ -42,3 +42,9 @@
   "sef_suffix": 0
 }'
 ```
+
+### setfiltertext
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html setfiltertext 7 NONE
+```
