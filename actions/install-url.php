@@ -41,7 +41,6 @@ $config = JFactory::getConfig();
 $packagePath = $config->get('tmp_path') . '/' . $package;
 
 // 2. Descompactacao do pacote
-echo "Descompactando pacote...\n";
 $extractDir = JInstallerHelper::unpack($packagePath, true);
 
 if (!$extractDir || empty($extractDir['type']) || empty($extractDir['dir'])) {
