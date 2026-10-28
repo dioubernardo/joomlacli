@@ -60,3 +60,9 @@
 ```bash
 /usr/src/joomlacli/joomlacli /var/www/html settheme pip
 ```
+
+### setlang
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html setlang pt-BR
+```
