@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+exec php "$DIR/joomlacli.php" "$@"
