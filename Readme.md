@@ -54,3 +54,9 @@
 ```bash
 /usr/src/joomlacli/joomlacli /var/www/html core.edit 6 1
 ```
+
+### settheme
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html settheme pip
+```
