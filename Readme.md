@@ -25,3 +25,11 @@
 ```bash
 /usr/src/joomlacli/joomlacli /var/www/html deletemodule "Privacy Dashboard" 1
 ```
+
+### setparams
+
+```bash
+/usr/src/joomlacli/joomlacli /var/www/html setparams com_finder '{
+  "show_advanced": 0
+}'
+```
