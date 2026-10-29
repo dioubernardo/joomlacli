@@ -1,19 +1,5 @@
 <?php
 
-$confFile = JPATH_CONFIGURATION . '/configuration.php';
-
-if (!file_exists($confFile)) {
-    echo "Erro: Arquivo de configuracao '$confFile' nao encontrado.\n";
-    exit(1);
-}
-
-require_once $confFile;
-
-if (!class_exists('JConfig')) {
-    echo "Erro: Classe JConfig nao encontrada em '$confFile'.\n";
-    exit(1);
-}
-
 $config   = new JConfig();
 
 while (true) {
