@@ -72,3 +72,9 @@ joomlacli /var/www/html setlang pt-BR
 ```bash
 joomlacli /var/www/html createuser 'CGTI' 'cgti' 'cgti.servicos@furg.br' 'xxx' 8
 ```
+
+### waitdb
+
+```bash
+joomlacli /var/www/html waitdb
+```
