@@ -26,6 +26,9 @@ if (!file_exists($actionFile)) {
 
 # ---
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 const _JEXEC = 1;
 
 if (file_exists($realJoomlaPath . '/defines.php')) {
@@ -102,6 +105,14 @@ class joomlaCli extends JApplicationCli {
 
     public function getParams() {
         return new JRegistry();
+    }
+
+    public function allowCache(){
+        return false;
+    }
+
+    public function setBody($body) {
+        echo preg_replace('/\s+/', ' ', strip_tags($body)) . "\n";
     }
 
     public function doExecute() {
