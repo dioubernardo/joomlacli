@@ -8,6 +8,12 @@
 joomlacli /var/www/html install-url https://joomlaupdater.furg.br/pip.zip
 ```
 
+### discoverinstall
+
+```bash
+joomlacli /var/www/html discoverinstall plugins/content/opengraph
+```
+
 ### uninstall
 
 ```bash
