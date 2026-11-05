@@ -81,19 +81,26 @@ if ($installed) {
     if (!empty($installer->message)) {
         echo strip_tags($installer->message) . "\n";
     }
-    exit(0);
+    $exitcode = 0;
 } else {
     echo "Erro: Falha ao instalar a extensao.\n";
-
     if (!empty($errors)) {
         foreach (array_unique($errors) as $err) {
             echo "Detalhe: $err\n";
         }
     }
-
     if (!empty($installer->message)) {
         echo "Detalhe: " . strip_tags($installer->message) . "\n";
     }
-
-    exit(1);
+    $exitcode = 1;
 }
+
+try {
+    $cache = JFactory::getCache();
+    $cache->clean('com_plugins');
+    $cache->clean('_system');
+} catch (\Throwable $e) {
+    // Ignora erros ao limpar cache
+}
+
+exit($exitcode);
