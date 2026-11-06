@@ -45,6 +45,11 @@ require_once JPATH_LIBRARIES . '/cms.php';
 require_once JPATH_CONFIGURATION . '/configuration.php';
 require_once JPATH_BASE . '/includes/framework.php';
 
+if (!is_array($_SERVER)) $_SERVER = [];
+if (!isset($_SERVER['HTTP_HOST'])) $_SERVER['HTTP_HOST'] = 'localhost';
+if (!isset($_SERVER['REQUEST_URI'])) $_SERVER['REQUEST_URI'] = '/';
+if (!isset($_SERVER['SCRIPT_NAME'])) $_SERVER['SCRIPT_NAME'] = '/joomlacli.php';
+
 class joomlaCli extends JApplicationCli {
 
     // Fila para guardar as mensagens do enqueueMessage

@@ -20,10 +20,10 @@ joomlacli /var/www/html discoverinstall plugins/content/opengraph
 joomlacli /var/www/html uninstall pip
 ```
 
-### disableplugin
+### pluginstatus
 
 ```bash
-joomlacli /var/www/html disableplugin plg_editors_codemirror
+joomlacli /var/www/html pluginstatus plg_editors_codemirror 0
 ```
 
 ### deletemodule
